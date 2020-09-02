@@ -591,3 +591,17 @@ net.exe stop LxssManager
 ```
 
 之后在进入wsl系统，mnt目录下的文件权限会恢复到正常的权限；
+
+## nginx无法访问Laravel,yii下的自定义url
+
+在该域名的`server`添加 `try_files $uri uri/ /index.php?query_string; `
+
+```nginx
+location / {                                                   
+	# First attempt to serve request as file, then         	
+	# as directory, then fall back to displaying a 404.    
+	#try_files $uri $uri/ =404;                            
+	try_files $uri uri/ /index.php?query_string;           
+}                                                              
+```
+
